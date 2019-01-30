@@ -17,8 +17,12 @@ io.on('connection', socket => {
         console.log('LOST CONNECTION')
     });
 
-    socket.on('playerUpdate', (data) => {
-        io.emit('playerUpdate', data);
+    socket.on('actorUpdate', data => {
+        io.emit('actorUpdate', data);
+    });
+
+    socket.on('projectileSpawn', data => {
+        io.emit('projectileSpawn', data);
     });
 });
 
