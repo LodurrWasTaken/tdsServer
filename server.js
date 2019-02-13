@@ -52,6 +52,10 @@ io.on('connection', socket => {
         });
         rooms[data.lobbyId].push(socket);
     });
+
+    socket.on('playerReady', name => {
+        io.in(socket.room).emit('playerReady', name);
+    });
 });
 
 server.listen(9009, () => console.log('Listening on 9009...'));
