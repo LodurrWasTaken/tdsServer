@@ -48,13 +48,14 @@ io.on('connection', socket => {
                 socketId: socket.id,
                 name: data.name,
             },
-            players: rooms[data.lobbyId].map(player => ({ socketId: player.id, name: player.name }))
+            players: rooms[data.lobbyId].map(player => ({ socketId: player.id, name: player.name, ready: player.ready }))
         });
         rooms[data.lobbyId].push(socket);
     });
 
     socket.on('playerReady', name => {
         io.in(socket.room).emit('playerReady', name);
+        socket.ready = true;
     });
 });
 
