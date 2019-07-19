@@ -15,7 +15,7 @@ io.on('connection', socket => {
             delete rooms[socket.room];
         }
         io.in(socket.room).emit('onDisconnect', socket.id);
-        
+
         socket.leaveAll();
     });
 
@@ -59,4 +59,4 @@ io.on('connection', socket => {
     });
 });
 
-server.listen(9009, () => console.log('Listening on 9009...'));
+server.listen(process.env.PORT || 9009, () => console.log('Listening on 9009...'));
